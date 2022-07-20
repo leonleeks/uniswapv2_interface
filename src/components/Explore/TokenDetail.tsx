@@ -14,7 +14,7 @@ import styled, { useTheme } from 'styled-components/macro'
 
 import Resource from './Resource'
 import ShareButton from './ShareButton'
-import { favoritesAtom, filterStringAtom, useToggleFavorite } from './state'
+import { favoritesAtom, filterNetworkAtom, filterStringAtom, filterTimeAtom, useToggleFavorite } from './state'
 import { ClickFavorited } from './TokenRow'
 
 const TIME_DISPLAYS: Record<TimePeriod, string> = {
@@ -170,6 +170,8 @@ export default function LoadedTokenDetail({ address }: { address: string }) {
   const isFavorited = favoriteTokens.includes(address)
   const toggleFavorite = useToggleFavorite(address)
   const filterString = useAtomValue(filterStringAtom)
+  const filterNetwork = useAtomValue(filterNetworkAtom)
+  const filterTime = useAtomValue(filterTimeAtom)
 
   // catch token error and loading state
   if (!token || !token.name || !token.symbol) {
