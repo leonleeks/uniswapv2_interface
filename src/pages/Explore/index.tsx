@@ -1,3 +1,5 @@
+import { PageName } from 'components/AmplitudeAnalytics/constants'
+import { Trace } from 'components/AmplitudeAnalytics/Trace'
 import { MAX_WIDTH_MEDIA_BREAKPOINT, MEDIUM_MEDIA_BREAKPOINT } from 'components/Explore/constants'
 import FavoriteButton from 'components/Explore/FavoriteButton'
 import NetworkFilter from 'components/Explore/NetworkFilter'
@@ -53,23 +55,25 @@ const FiltersWrapper = styled.div`
 
 const Explore = () => {
   return (
-    <ExploreContainer>
-      <TitleContainer>Explore Tokens</TitleContainer>
-      <FiltersWrapper>
-        <FiltersContainer>
-          <NetworkFilter />
-          <FavoriteButton />
-          <TimeSelector />
-        </FiltersContainer>
-        <SearchContainer>
-          <SearchBar />
-        </SearchContainer>
-      </FiltersWrapper>
+    <Trace page={PageName.EXPLORE_PAGE} shouldLogImpression>
+      <ExploreContainer>
+        <TitleContainer>Explore Tokens</TitleContainer>
+        <FiltersWrapper>
+          <FiltersContainer>
+            <NetworkFilter />
+            <FavoriteButton />
+            <TimeSelector />
+          </FiltersContainer>
+          <SearchContainer>
+            <SearchBar />
+          </SearchContainer>
+        </FiltersWrapper>
 
-      <TokenTableContainer>
-        <TokenTable />
-      </TokenTableContainer>
-    </ExploreContainer>
+        <TokenTableContainer>
+          <TokenTable />
+        </TokenTableContainer>
+      </ExploreContainer>
+    </Trace>
   )
 }
 
