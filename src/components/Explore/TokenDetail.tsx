@@ -1,9 +1,11 @@
 import { Trans } from '@lingui/macro'
+import { EventName } from 'components/AmplitudeAnalytics/constants'
+import { EventName } from 'components/AmplitudeAnalytics/constants'
 import { Trace } from 'components/AmplitudeAnalytics/Trace'
 import CurrencyLogo from 'components/CurrencyLogo'
 import { useCurrency, useToken } from 'hooks/Tokens'
 import { TimePeriod } from 'hooks/useTopTokens'
-import { useAtom } from 'jotai'
+import { useAtom, useAtomValue } from 'jotai'
 import { darken } from 'polished'
 import { useState } from 'react'
 import { ArrowDownRight, ArrowLeft, ArrowUpRight, Copy, Heart } from 'react-feather'
@@ -12,7 +14,7 @@ import styled, { useTheme } from 'styled-components/macro'
 
 import Resource from './Resource'
 import ShareButton from './ShareButton'
-import { favoritesAtom, useToggleFavorite } from './state'
+import { favoritesAtom, filterStringAtom, useToggleFavorite } from './state'
 import { ClickFavorited } from './TokenRow'
 
 const TIME_DISPLAYS: Record<TimePeriod, string> = {
@@ -167,6 +169,7 @@ export default function LoadedTokenDetail({ address }: { address: string }) {
   const [activeTimePeriod, setTimePeriod] = useState(TimePeriod.hour)
   const isFavorited = favoriteTokens.includes(address)
   const toggleFavorite = useToggleFavorite(address)
+  const filterString = useAtomValue(filterStringAtom)
 
   // catch token error and loading state
   if (!token || !token.name || !token.symbol) {
