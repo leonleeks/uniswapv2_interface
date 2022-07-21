@@ -1,6 +1,5 @@
 import { Trans } from '@lingui/macro'
 import { EventName } from 'components/AmplitudeAnalytics/constants'
-import { EventName } from 'components/AmplitudeAnalytics/constants'
 import { Trace } from 'components/AmplitudeAnalytics/Trace'
 import CurrencyLogo from 'components/CurrencyLogo'
 import { useCurrency, useToken } from 'hooks/Tokens'

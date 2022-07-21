@@ -1,9 +1,9 @@
-import useTopTokens, { TimePeriod } from 'hooks/useTopTokens'
-import { useAtom } from 'jotai'
+import useTopTokens from 'hooks/useTopTokens'
+import { useAtomValue } from 'jotai/utils'
 import styled from 'styled-components/macro'
 
 import { MAX_WIDTH_MEDIA_BREAKPOINT } from './constants'
-import { favoritesAtom, showFavoritesAtom } from './state'
+import { favoritesAtom, filterTimeAtom, showFavoritesAtom } from './state'
 import LoadedRow, { HeaderRow, LoadingRow } from './TokenRow'
 
 const GridContainer = styled.div`
@@ -40,9 +40,9 @@ const LOADING_ROWS = Array(10)
 
 export default function TokenTable() {
   const { data, error, loading } = useTopTokens()
-  const [favoriteTokens] = useAtom(favoritesAtom)
-  const [showFavorites] = useAtom(showFavoritesAtom)
-  const timePeriod = TimePeriod.day
+  const favoriteTokens = useAtomValue(favoritesAtom)
+  const showFavorites = useAtomValue(showFavoritesAtom)
+  const timePeriod = useAtomValue(filterTimeAtom)
 
   /* loading and error state */
   if (loading) {
