@@ -41,8 +41,7 @@ it('loads Wallet Modal on desktop', async () => {
   expect(screen.getByText('Install MetaMask')).toBeInTheDocument()
   expect(screen.getByText('Coinbase Wallet')).toBeInTheDocument()
   expect(screen.getByText('WalletConnect')).toBeInTheDocument()
-  expect(screen.getByText('Fortmatic')).toBeInTheDocument()
-  expect(screen.getAllByTestId('wallet-modal-option')).toHaveLength(4)
+  expect(screen.getAllByTestId('wallet-modal-option')).toHaveLength(3)
 })
 
 it('loads Wallet Modal on desktop with generic Injected', async () => {
@@ -54,8 +53,7 @@ it('loads Wallet Modal on desktop with generic Injected', async () => {
   expect(screen.getByText('Injected')).toBeInTheDocument()
   expect(screen.getByText('Coinbase Wallet')).toBeInTheDocument()
   expect(screen.getByText('WalletConnect')).toBeInTheDocument()
-  expect(screen.getByText('Fortmatic')).toBeInTheDocument()
-  expect(screen.getAllByTestId('wallet-modal-option')).toHaveLength(4)
+  expect(screen.getAllByTestId('wallet-modal-option')).toHaveLength(3)
 })
 
 it('loads Wallet Modal on desktop with MetaMask installed', async () => {
@@ -67,8 +65,7 @@ it('loads Wallet Modal on desktop with MetaMask installed', async () => {
   expect(screen.getByText('MetaMask')).toBeInTheDocument()
   expect(screen.getByText('Coinbase Wallet')).toBeInTheDocument()
   expect(screen.getByText('WalletConnect')).toBeInTheDocument()
-  expect(screen.getByText('Fortmatic')).toBeInTheDocument()
-  expect(screen.getAllByTestId('wallet-modal-option')).toHaveLength(4)
+  expect(screen.getAllByTestId('wallet-modal-option')).toHaveLength(3)
 })
 
 it('loads Wallet Modal on mobile', async () => {
@@ -81,8 +78,7 @@ it('loads Wallet Modal on mobile', async () => {
   render(<WalletModal pendingTransactions={[]} confirmedTransactions={[]} />)
   expect(screen.getByText('Open in Coinbase Wallet')).toBeInTheDocument()
   expect(screen.getByText('WalletConnect')).toBeInTheDocument()
-  expect(screen.getByText('Fortmatic')).toBeInTheDocument()
-  expect(screen.getAllByTestId('wallet-modal-option')).toHaveLength(3)
+  expect(screen.getAllByTestId('wallet-modal-option')).toHaveLength(2)
 })
 
 it('loads Wallet Modal on MetaMask browser', async () => {

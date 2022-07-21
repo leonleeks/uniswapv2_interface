@@ -6,7 +6,6 @@ import { EventName, WALLET_CONNECTION_RESULT } from 'components/AmplitudeAnalyti
 import { sendEvent } from 'components/analytics'
 import { AutoColumn } from 'components/Column'
 import { AutoRow } from 'components/Row'
-import { ConnectionType } from 'connection'
 import { getConnection, getConnectionName, getIsCoinbaseWallet, getIsInjected, getIsMetaMask } from 'connection/utils'
 import { useCallback, useEffect, useState } from 'react'
 import { ArrowLeft } from 'react-feather'
@@ -24,7 +23,6 @@ import AccountDetails from '../AccountDetails'
 import { LightCard } from '../Card'
 import Modal from '../Modal'
 import { CoinbaseWalletOption, OpenCoinbaseWalletOption } from './CoinbaseWalletOption'
-import { FortmaticOption } from './FortmaticOption'
 import { InjectedOption, InstallMetaMaskOption, MetaMaskOption } from './InjectedOption'
 import PendingView from './PendingView'
 import { WalletConnectOption } from './WalletConnectOption'
@@ -178,12 +176,6 @@ export default function WalletModal({
       })
 
       try {
-        // Fortmatic opens it's own modal on activation to log in. This modal has a tabIndex
-        // collision into the WalletModal, so we special case by closing the modal.
-        if (connectionType === ConnectionType.FORTMATIC) {
-          toggleWalletModal()
-        }
-
         setPendingConnector(connector)
         setWalletView(WALLET_VIEWS.PENDING)
         dispatch(updateConnectionError({ connectionType, error: undefined }))
@@ -201,7 +193,7 @@ export default function WalletModal({
         })
       }
     },
-    [dispatch, toggleWalletModal]
+    [dispatch]
   )
 
   function getOptions() {
@@ -236,14 +228,11 @@ export default function WalletModal({
     const walletConnectionOption =
       (!isInjectedMobileBrowser && <WalletConnectOption tryActivation={tryActivation} />) ?? null
 
-    const fortmaticOption = (!isInjectedMobileBrowser && <FortmaticOption tryActivation={tryActivation} />) ?? null
-
     return (
       <>
         {injectedOption}
         {coinbaseWalletOption}
         {walletConnectionOption}
-        {fortmaticOption}
       </>
     )
   }
