@@ -80,11 +80,11 @@ const StyledTokenRow = styled.div`
   }
 
   @media only screen and (max-width: ${MOBILE_MEDIA_BREAKPOINT}) {
-    grid-template-columns: 1fr 12fr 6fr;
+    grid-template-columns: 1fr 1fr;
     width: fit-content;
     min-width: unset;
     border-bottom: 0.5px solid ${({ theme }) => theme.backgroundContainer};
-    padding: 0px;
+    padding: 0px 12px;
 
     :last-of-type {
       border-bottom: none;
@@ -135,7 +135,7 @@ const StyledHeaderRow = styled(StyledTokenRow)`
   }
 
   @media only screen and (max-width: ${MOBILE_MEDIA_BREAKPOINT}) {
-    display: none;
+    padding: 0px 12px;
   }
 `
 const ListNumberCell = styled(Cell)`
@@ -143,9 +143,7 @@ const ListNumberCell = styled(Cell)`
   min-width: 32px;
 
   @media only screen and (max-width: ${MOBILE_MEDIA_BREAKPOINT}) {
-    font-size: 12px;
-    justify-content: flex-start;
-    min-width: 20px;
+    display: none;
   }
 `
 const MarketCapCell = styled(Cell)<{ sortable: boolean }>`
@@ -168,7 +166,7 @@ const NameCell = styled(Cell)`
   gap: 8px;
 
   @media only screen and (max-width: ${MOBILE_MEDIA_BREAKPOINT}) {
-    min-width: fit-content;
+    min-width: 200px;
     padding-right: 8px;
   }
 `
@@ -191,6 +189,7 @@ const PercentChangeInfoCell = styled(Cell)`
 
   @media only screen and (max-width: ${MOBILE_MEDIA_BREAKPOINT}) {
     display: flex;
+    justify-content: flex-end;
     color: ${({ theme }) => theme.textSecondary};
     font-size: 12px;
     line-height: 16px;
@@ -201,17 +200,13 @@ const PriceCell = styled(Cell)<{ sortable: boolean }>`
   min-width: 80px;
   padding-right: 4px;
 
-  @media only screen and (max-width: ${MOBILE_MEDIA_BREAKPOINT}) {
-    min-width: max-content;
-  }
-
   &:hover {
     background-color: ${({ theme, sortable }) => sortable && theme.backgroundContainer};
   }
 `
 const PriceInfoCell = styled(Cell)`
   justify-content: flex-end;
-  min-width: max-content;
+  flex: 1;
 
   @media only screen and (max-width: ${MOBILE_MEDIA_BREAKPOINT}) {
     flex-direction: column;
@@ -398,7 +393,7 @@ export function HeaderRow({ timeframe }: { timeframe: string }) {
       header={true}
       favorited={null}
       listNumber={null}
-      tokenInfo={<Trans>Name</Trans>}
+      tokenInfo={<Trans>Token Name</Trans>}
       price={
         <HeaderCell
           category={Category.price}
